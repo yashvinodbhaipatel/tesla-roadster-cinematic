@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#080a0b">
+  <meta name="description" content="Beyond Gravity. An independent cinematic Roadster concept by Yash Patel. Experience an interactive 3D stunt, open the hood, step inside, and explore every detail.">
+  <title>ROADSTER — Beyond Gravity</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='20' fill='%23090b0d'/%3E%3Cpath d='M20 60V20h24q16 0 16 13 0 11-13 13l16 14H49L33 44h-3v16zm10-25h14q6 0 6-4t-6-4H30' fill='%23e8ff75'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#primary-action" class="skip-link">Skip to experience controls</a>
+  <div id="stage" aria-label="Interactive 3D Roadster concept"></div>
+  <div class="ambient-grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a href="#" id="brand" class="brand" aria-label="Roadster home">TESLA<span class="brand-separator"></span><span class="brand-model">ROADSTER</span></a>
+    <nav aria-label="Main navigation">
+      <button class="nav-button active" data-nav="experience">Experience</button>
+      <button class="nav-button" data-nav="explore">Explore the car</button>
+      <button class="nav-button" data-nav="specs">The engineering <span>↗</span></button>
+    </nav>
+    <button id="sound-toggle" class="sound-button" aria-pressed="false" aria-label="Enable cinematic sound"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-label">SOUND OFF</span></button>
+  </header>
+
+  <main>
+    <section id="hero-copy" class="hero-copy">
+      <div class="eyebrow"><span class="status-dot"></span> AN INDEPENDENT TESLA CONCEPT <span class="edition">/ 001</span></div>
+      <h1>BEYOND<br><span>GRAVITY.</span></h1>
+      <p>Some cars follow the road.<br>This one reimagines it.</p>
+      <div class="hero-actions">
+        <button id="primary-action" class="primary-button">Play the experience <span class="play-icon">▶</span></button>
+        <button id="explore-action" class="text-button">Explore every detail <span>↗</span></button>
+      </div>
+      <div class="hero-caption"><span class="small-cross">+</span> ELECTRIC BY NATURE. EXTRAORDINARY BY DESIGN.</div>
+    </section>
+
+    <div id="hero-wordmark" aria-hidden="true">ROADSTER</div>
+    <div id="coordinates" class="coordinates" aria-hidden="true"><span>DESIGN STUDY 01</span><span>PRECISION / PERFORMANCE</span><span class="vertical-line"></span></div>
+    <div id="car-label" class="car-label"><span class="small-cross">+</span><div>ROADSTER<span>ELECTRIC SUPERCAR CONCEPT</span></div></div>
+
+    <section id="explore-header" class="explore-header" hidden>
+      <div class="eyebrow">THE INTERACTIVE WALKAROUND</div>
+      <h2>Closer changes everything.</h2>
+      <p>Select a detail. Discover what lies beneath.</p>
+    </section>
+    <div id="hotspots" hidden>
+      <button class="hotspot" data-part="hood"><span class="hotspot-dot">+</span><span class="hotspot-label">01 <b>Under the hood</b></span></button>
+      <button class="hotspot" data-part="cabin"><span class="hotspot-dot">+</span><span class="hotspot-label">02 <b>Step inside</b></span></button>
+      <button class="hotspot" data-part="rear"><span class="hotspot-dot">+</span><span class="hotspot-label">03 <b>Rear aero</b></span></button>
+      <button class="hotspot" data-part="wheels"><span class="hotspot-dot">+</span><span class="hotspot-label">04 <b>Wheels & brakes</b></span></button>
+      <button class="hotspot" data-part="thrusters"><span class="hotspot-dot">+</span><span class="hotspot-label">05 <b>Thruster concept</b></span></button>
+    </div>
+
+    <aside id="detail-panel" class="detail-panel" hidden aria-labelledby="detail-title">
+      <div class="detail-top"><span id="detail-index">01 / ANATOMY</span><button id="close-detail" class="icon-button" aria-label="Close detail and return to exterior">✕</button></div>
+      <div class="eyebrow" id="detail-kicker">BELOW THE SURFACE</div>
+      <h2 id="detail-title">Electric.<br>To the core.</h2>
+      <p id="detail-description"></p>
+      <dl id="detail-facts"></dl>
+      <button id="detail-action" class="primary-button"></button>
+      <p class="concept-note" id="detail-note"></p>
+    </aside>
+    <button id="exit-cabin" class="exit-cabin" hidden><span>↗</span> Exit the interior</button>
+    <div id="interior-instruments" class="interior-instruments" hidden><span>COCKPIT VIEW</span><span>DRAG TO LOOK AROUND</span></div>
+
+    <div id="stunt-title" class="stunt-title" hidden><div class="eyebrow" id="chapter-number">01 / IGNITION</div><h2 id="chapter-title">Break the ordinary.</h2><p id="chapter-description">An electric beginning.</p></div>
+    <button id="leave-film" class="leave-film" hidden aria-label="Exit cinematic sequence">✕ <span>EXIT FILM</span></button>
+    <div id="film-indicator" class="film-indicator" hidden><span class="status-dot"></span> <span id="film-status">CINEMATIC SEQUENCE</span><span>30 FPS / REAL-TIME 3D</span></div>
+    <section id="timeline" class="timeline" hidden aria-label="Cinematic frame controls">
+      <div class="timeline-top"><span id="sequence-title">01 — THE APPROACH</span><span id="frame-display">FRAME 0000 / 0720</span><span id="time-display">00:00 / 00:24</span></div>
+      <input id="frame-range" type="range" min="0" max="720" step="1" value="0" aria-label="Stunt animation frame">
+      <div class="timeline-controls">
+        <div class="transport"><button id="frame-prev" aria-label="Previous frame">←</button><button id="play-pause" aria-label="Pause sequence">Ⅱ</button><button id="frame-next" aria-label="Next frame">→</button><button id="replay" aria-label="Replay sequence">↻</button></div>
+        <div class="chapter-buttons"><button data-frame="0">Approach</button><button data-frame="180">Climb</button><button data-frame="340">Defy</button><button data-frame="510">Return</button></div>
+        <button id="speed-toggle" aria-label="Playback speed">1× SPEED</button>
+      </div>
+    </section>
+
+    <div id="explorer-toolbar" class="explorer-toolbar" hidden>
+      <div class="part-tabs" aria-label="Vehicle parts"><button data-part="hood">Hood</button><button data-part="cabin">Interior</button><button data-part="rear">Rear</button><button data-part="wheels">Wheels</button><button data-part="thrusters">Thrusters</button></div>
+      <button id="reset-view" class="text-button">↻ <span>Reset view</span></button>
+    </div>
+    <div id="paint-picker" class="paint-picker"><span>FINISH</span><button class="swatch selected" data-color="#bfc8cc" style="--swatch:#bfc8cc" aria-label="Lunar silver paint" aria-pressed="true"></button><button class="swatch" data-color="#9d151b" style="--swatch:#9d151b" aria-label="Crimson paint" aria-pressed="false"></button><button class="swatch" data-color="#24272d" style="--swatch:#24272d" aria-label="Obsidian paint" aria-pressed="false"></button><span id="paint-name">LUNAR SILVER</span></div>
+    <div id="loading" class="loading"><span class="loading-mark">R</span><span>CRAFTING THE EXPERIENCE</span><span class="loading-track"><i></i></span></div>
+    <div id="webgl-fallback" class="webgl-fallback" hidden><h2>Your experience is ready.</h2><p>This 3D experience needs WebGL. Enable hardware acceleration in your browser, then reload to explore the car.</p><button onclick="location.reload()" class="primary-button">Reload experience ↗</button></div>
+  </main>
+
+  <footer class="site-footer"><span>AN EXPLORATION IN MOTION</span><button id="credits-open">CONCEPT BY YASH PATEL <span>↗</span></button><span class="footer-right"><span class="status-dot"></span> BUILT TO BE EXPERIENCED</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="engineering-dialog">
+    <button class="dialog-close icon-button" aria-label="Close engineering details">✕</button><div class="eyebrow">THE THINKING BENEATH THE THRILL</div><h2>Engineered to<br>challenge convention.</h2>
+    <div class="engineering-grid"><article><span>01</span><h3>Electric propulsion</h3><p>Electric motors convert stored battery energy into motion. There is no combustion engine under the front hood. The assembly in this experience is an illustrative cutaway.</p></article><article><span>02</span><h3>Aerodynamic thinking</h3><p>A low silhouette, controlled airflow, a rear wing and an underbody diffuser form the visual language of this performance study.</p></article><article><span>03</span><h3>Cold-gas imagination</h3><p>The cinematic sequence explores the Roadster's thruster idea with visible air plumes, an inverted ramp run and a controlled roll. This animation is an artistic reconstruction, not a physics simulator.</p></article><article><span>04</span><h3>The human connection</h3><p>An opening door, a moving camera, a sculpted steering yoke and a focused display bring you from the exterior into an imagined cockpit.</p></article></div>
+    <p class="dialog-footnote">Independent fan concept by Yash Patel. Vehicle geometry, mechanisms, interior and sound are original artistic interpretations. Not affiliated with or endorsed by Tesla or SpaceX. No production specifications are claimed.</p><a class="text-button" href="https://www.tesla.com/roadster" target="_blank" rel="noopener noreferrer">See Tesla's official Roadster information ↗</a>
+  </dialog>
+  <dialog id="credits-dialog"><button class="dialog-close icon-button" aria-label="Close credits">✕</button><div class="eyebrow">DESIGN + DEVELOPMENT</div><h2>A concept.<br>Without limits.</h2><p>A cinematic Roadster study by <strong>Yash Patel</strong>, combining real-time 3D, interactive product storytelling and original synthesized sound design.</p><p>Every stunt frame is rendered in your browser. Pause, scrub, or use the arrow controls to move one frame at a time.</p><p class="dialog-footnote">Independent fan concept. Tesla and Roadster are trademarks of Tesla, Inc. This site is not an official Tesla website. Three.js is used under the MIT license.</p><a class="text-button" href="./assets/THREE-LICENSE.txt" target="_blank">Open-source license ↗</a></dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
