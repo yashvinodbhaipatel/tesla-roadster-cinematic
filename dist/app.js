@@ -10,6 +10,7 @@ const ease=t=>{t=clamp(t);return t*t*(3-2*t)};
 const lerp=T.MathUtils.lerp;
 const V=(x,y,z)=>new T.Vector3(x,y,z);
 const state={mode:'hero',part:null,frame:0,playing:false,speed:1,hoodOpen:false,doorOpen:false,boost:false,wheelSpin:false,steering:false,dragging:false,orbit:0,pitch:0,cabinLook:0,sound:false};
+let suspended=false;
 let toastTimer,transition=null,transitionId=0,lastTime=performance.now(),elapsed=0,stuntFloat=0;
 let renderer;
 try{renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});}catch(e){$('#loading').hidden=true;$('#webgl-fallback').hidden=false;throw e;}
@@ -62,12 +63,13 @@ function setPose(p){camera.position.copy(p.p);look.copy(p.l);camera.fov=p.fov;cu
 function moveTo(p,duration=1500,done){const id=++transitionId;transition={id,from:camera.position.clone(),to:p.p.clone(),fromLook:look.clone(),toLook:p.l.clone(),fov0:camera.fov,fov1:p.fov||36,x0:currentOffset.x,y0:currentOffset.y,x1:p.ox||0,y1:p.oy||0,start:performance.now(),duration:reduced?1:duration,done};}
 function resetParts(){wingRaised=false;state.hoodOpen=false;state.doorOpen=false;state.boost=false;state.wheelSpin=false;state.steering=false;state.part=null;state.orbit=0;state.pitch=0;state.cabinLook=0;vehicle.windshield.visible=true;vehicle.roof.visible=true;$$('[data-part]').forEach(b=>b.classList.remove('selected'));}
 function modeUI(mode){
+ $('.skip-link').href=mode==='film'?'#frame-range':mode==='explore'?'#explorer-toolbar':'#primary-action';
  document.body.classList.toggle('film-mode',mode==='film');document.body.classList.toggle('explore-mode',mode==='explore');document.body.classList.remove('detail-open');
  for(const s of ['#hero-copy','#hero-wordmark','#coordinates','#car-label'])visible(s,mode==='hero');
  for(const s of ['#explore-header','#hotspots','#explorer-toolbar'])visible(s,mode==='explore');
  for(const s of ['#stunt-title','#leave-film','#film-indicator','#timeline'])visible(s,mode==='film');
  for(const s of ['#detail-panel','#exit-cabin','#interior-instruments'])visible(s,false);
- $$('.nav-button').forEach(b=>b.classList.toggle('active',b.dataset.nav===(mode==='explore'?'explore':'experience')));
+ $$('.nav-button').forEach(b=>b.classList.toggle('active',b.dataset.nav==='prototype'));
 }
 function toHero(){state.mode='hero';state.playing=false;resetParts();modeUI('hero');runway.visible=false;studio.visible=true;shadow.visible=true;vehicle.car.position.set(0,0,0);vehicle.car.rotation.set(0,0,0);scene.fog.density=.025;moveTo(homePose(),1700);chime(220);}
 function explore(){state.mode='explore';state.playing=false;resetParts();modeUI('explore');runway.visible=false;studio.visible=true;shadow.visible=true;vehicle.car.position.set(0,0,0);vehicle.car.rotation.set(0,0,0);scene.fog.density=.025;moveTo(exteriorPose(),1700);chime(330);}
@@ -126,18 +128,15 @@ function pauseToggle(force){if(state.mode!=='film')return;state.playing=typeof f
 function seek(f){pauseToggle(false);state.frame=Math.round(clamp(f,0,720));stuntFloat=state.frame;renderFilm(state.frame);updateTimeline();}
 $('#frame-range').addEventListener('input',e=>seek(+e.target.value));$('#play-pause').addEventListener('click',()=>pauseToggle());$('#frame-prev').addEventListener('click',()=>seek(state.frame-1));$('#frame-next').addEventListener('click',()=>seek(state.frame+1));$('#replay').addEventListener('click',()=>{seek(0);pauseToggle(true);});$$('[data-frame]').forEach(b=>b.addEventListener('click',()=>seek(+b.dataset.frame)));
 $('#speed-toggle').addEventListener('click',()=>{state.speed=state.speed===1?.5:state.speed===.5?.25:1;$('#speed-toggle').textContent=state.speed+'× SPEED';});
-$('#sound-toggle').addEventListener('click',soundToggle);$('#brand').addEventListener('click',e=>{e.preventDefault();toHero();});$('#primary-action').addEventListener('click',film);$('#explore-action').addEventListener('click',explore);$('#leave-film').addEventListener('click',explore);$('#close-detail').addEventListener('click',closeDetail);$('#exit-cabin').addEventListener('click',closeDetail);$('#reset-view').addEventListener('click',explore);$$('[data-part]').forEach(b=>b.addEventListener('click',()=>selectPart(b.dataset.part)));
-let dialogOpener=null;
-function openDialog(id){dialogOpener=document.activeElement;if(state.mode==='film')pauseToggle(false);$(id).showModal();}
-$$('.nav-button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.nav==='experience')toHero();if(b.dataset.nav==='explore')explore();if(b.dataset.nav==='specs')openDialog('#engineering-dialog');}));
-$('#credits-open').addEventListener('click',()=>openDialog('#credits-dialog'));$$('dialog').forEach(d=>{d.querySelector('.dialog-close').addEventListener('click',()=>d.close());d.addEventListener('close',()=>dialogOpener?.focus());d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});});
+$('#sound-toggle').addEventListener('click',soundToggle);$('#primary-action').addEventListener('click',film);$('#explore-action').addEventListener('click',explore);$('#leave-film').addEventListener('click',explore);$('#close-detail').addEventListener('click',closeDetail);$('#exit-cabin').addEventListener('click',closeDetail);$('#reset-view').addEventListener('click',explore);$$('[data-part]').forEach(b=>b.addEventListener('click',()=>selectPart(b.dataset.part)));
+document.addEventListener('roadster:dialog',()=>pauseToggle(false));
 $$('.swatch').forEach((b,i)=>b.addEventListener('click',()=>{vehicle.paint.color.set(b.dataset.color);$$('.swatch').forEach(s=>{s.classList.toggle('selected',s===b);s.setAttribute('aria-pressed',String(s===b));});$('#paint-name').textContent=['LUNAR SILVER','CRIMSON','OBSIDIAN'][i];chime(500,.08);}));
 document.addEventListener('keydown',e=>{
- if($$('dialog').some(d=>d.open))return;
+ if(suspended||$$('dialog').some(d=>d.open))return;
  if(e.key==='Escape'){if(state.part)closeDetail();else if(state.mode==='film')explore();}
  if(state.mode==='film'&&!['INPUT','BUTTON'].includes(document.activeElement.tagName)){if(e.code==='Space'){e.preventDefault();pauseToggle();}if(e.key==='ArrowRight'){e.preventDefault();seek(state.frame+1);}if(e.key==='ArrowLeft'){e.preventDefault();seek(state.frame-1);}}
 });
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.mode==='film')pauseToggle(false);if(audio)audio.master.gain.setTargetAtTime(state.sound&&!document.hidden?.48:0,audio.ctx.currentTime,.1);});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.mode==='film')pauseToggle(false);if(audio)audio.master.gain.setTargetAtTime(state.sound&&!document.hidden&&!suspended?.48:0,audio.ctx.currentTime,.1);});
 
 // Drag the exterior to orbit. The cabin has a deliberately limited head movement.
 let pointerX=0,pointerY=0,moved=false;
@@ -152,7 +151,7 @@ addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);renderer
 setPose(homePose());camera.position.multiplyScalar(1.12);
 moveTo(homePose(),2400);
 let rendered=false;
-function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-lastTime)/1000,.05);lastTime=now;elapsed+=dt;
+function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-lastTime)/1000,.05);lastTime=now;if(suspended)return;elapsed+=dt;
  if(state.mode==='film'){
   if(state.playing){stuntFloat=Math.min(720,stuntFloat+dt*30*state.speed);state.frame=Math.floor(stuntFloat);if(state.frame>=720){pauseToggle(false);toast('Experience complete. Replay, scrub, or explore the car.');}updateTimeline();}
   renderFilm(state.frame);
@@ -174,3 +173,14 @@ function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last
 requestAnimationFrame(animate);
 // Read-only diagnostics, useful for verification without changing the experience.
 window.roadsterDiagnostics=()=>({mode:state.mode,part:state.part,frame:state.frame,playing:state.playing,sound:state.sound,hoodAngle:vehicle.hood.rotation.x,doorAngles:vehicle.doors.map(d=>d.rotation.z),camera:camera.position.toArray(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles});
+
+// The reference viewer owns the landing page; only one 3D experience runs at a time.
+export function activatePrototype(mode='explore'){
+ suspended=false;lastTime=performance.now();
+ if(audio)audio.master.gain.setTargetAtTime(state.sound?.48:0,audio.ctx.currentTime,.1);
+ if(mode==='film')film();else explore();
+}
+export function suspendPrototype(){
+ suspended=true;state.playing=false;state.dragging=false;transition=null;transitionId++;
+ if(audio)audio.master.gain.setTargetAtTime(0,audio.ctx.currentTime,.1);
+}

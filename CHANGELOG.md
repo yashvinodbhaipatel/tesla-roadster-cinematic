@@ -1,5 +1,15 @@
 # Updates
 
+## Exact exterior reference showroom — 25 October 2026
+
+- Replaced the default landing-page vehicle with the exact The3DBoss Roadster reference through its official Sketchfab viewer.
+- Added responsive desktop and phone showroom layouts, orbit/zoom instructions, direct viewer fallback, and visible creator attribution.
+- Kept the original hood, cabin, wheels, thrusters and frame-by-frame stunt in a clearly labeled, separate Motion prototype.
+- Added on-demand Three.js loading; suspended its rendering/audio when viewing the reference and unloaded the reference when using the prototype.
+- Updated credits and documentation to distinguish the creator’s exterior from Yash’s interaction prototype.
+- Verified desktop and 390 × 844 phone layouts; model switching, hood controls, cabin entry/exit, and frame stepping (340 → 341). The local page reported no captured console warnings or errors.
+- Exact-model hood/door animation remains dependent on a licensed source model; the reference asset has no interior. No asset files were extracted or redistributed.
+
 ## Initial complete experience — 24 October 2026
 
 - Built the dark “Beyond Gravity” landing page with responsive desktop and phone layouts.
@@ -21,4 +31,4 @@ JavaScript syntax checks passed. Browser checks covered desktop and 390 × 844 p
 
 ## Creative scope
 
-This is an independent artistic concept. The vehicle geometry, interior, mechanisms, stunt and sounds are original interpretations, not Tesla CAD, official stunt footage, actual vehicle audio, validated physics, or production specifications. The front hood does not contain a combustion engine.
+This is an independent artistic concept. The motion prototype’s vehicle geometry, interior, mechanisms, stunt and sounds are original interpretations, not Tesla CAD, official stunt footage, actual vehicle audio, validated physics, or production specifications. The front hood does not contain a combustion engine.
