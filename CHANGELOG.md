@@ -9,6 +9,7 @@
 - Added front, canopy, rear, wheel and thruster inspections with accurate labels for the supplied exterior-only asset.
 - Removed controls that implied the connected shell had separate hood/door panels or an included cockpit.
 - Added compressed-model loading, real download progress and load-error recovery.
+- Versioned the updated entry scripts and stylesheet so returning visitors do not mix cached old code with the new interface.
 - Optimized wheel texture resolution and duplicate payloads, while retaining the body maps at full resolution.
 - Tuned showroom lighting and framing for the imported car.
 - Prevented negative animation deltas when starting playback between browser frames.

@@ -1,6 +1,6 @@
 import * as T from './assets/three.module.js';
 import {RoomEnvironment} from './assets/RoomEnvironment.js';
-import {createStuntEnvironment} from './model.js';
+import {createStuntEnvironment} from './model.js?v=uploaded-20261026';
 import {loadUploadedRoadster} from './uploaded-model.js';
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];

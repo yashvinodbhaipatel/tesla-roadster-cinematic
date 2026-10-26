@@ -1,6 +1,6 @@
 const $=selector=>document.querySelector(selector);
 let app;
-const ready=import('./app.js').then(module=>{app=module;return module;}).catch(error=>{
+const ready=import('./app.js?v=uploaded-20261026').then(module=>{app=module;return module;}).catch(error=>{
  console.error('Roadster model initialization failed.',error);
  $('#loading').hidden=true;$('#webgl-fallback').hidden=false;
  $('#webgl-fallback h2').textContent='The model could not load.';
