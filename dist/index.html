@@ -4,49 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="theme-color" content="#080a0b">
-  <meta name="description" content="Explore the exact Tesla Roadster 3D exterior by The3DBoss in an immersive showroom, alongside Yash Patel’s original interactive motion prototype.">
+  <meta name="description" content="Explore the uploaded Tesla Roadster model in an interactive cinematic experience. Original model geometry and textures, rotating wheels, close-up details and a frame-by-frame stunt.">
   <title>ROADSTER — Beyond Gravity</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='20' fill='%23090b0d'/%3E%3Cpath d='M20 60V20h24q16 0 16 13 0 11-13 13l16 14H49L33 44h-3v16zm10-25h14q6 0 6-4t-6-4H30' fill='%23e8ff75'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./style.css">
 </head>
-<body class="reference-mode">
-  <a href="#reference-viewer" class="skip-link">Skip to experience controls</a>
+<body>
+  <a href="#primary-action" class="skip-link">Skip to experience controls</a>
   <div id="stage" aria-label="Interactive 3D Roadster concept"></div>
   <div class="ambient-grain" aria-hidden="true"></div>
   <header class="site-header">
     <a href="#" id="brand" class="brand" aria-label="Roadster home">TESLA<span class="brand-separator"></span><span class="brand-model">ROADSTER</span></a>
     <nav aria-label="Main navigation">
-      <button class="nav-button active" data-nav="reference" aria-pressed="true">3D exterior</button>
-      <button class="nav-button" data-nav="prototype" data-prototype="explore" aria-pressed="false">Motion prototype</button>
-      <button class="nav-button" data-nav="specs">Design notes <span>↗</span></button>
+      <button class="nav-button active" data-nav="experience">Experience</button>
+      <button class="nav-button" data-nav="explore">Explore the car</button>
+      <button class="nav-button" data-nav="film">Play film <span>↗</span></button>
     </nav>
     <button id="sound-toggle" class="sound-button" aria-pressed="false" aria-label="Enable cinematic sound"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-label">SOUND OFF</span></button>
   </header>
 
-  <section id="reference-showroom" class="reference-showroom" aria-labelledby="reference-title">
-    <div class="reference-copy">
-      <div class="eyebrow"><span class="status-dot"></span> THE EXTERIOR STUDY / 02</div>
-      <h1 id="reference-title">SHAPED <br>BY <span>THE <br>FUTURE.</span></h1>
-      <p>A sharper silhouette.<br>A different kind of presence.</p>
-      <div class="reference-rule"></div>
-      <p class="reference-description">Explore the Roadster concept from every angle. Drag to rotate. Scroll or pinch to get closer.</p>
-      <button class="text-button reference-motion-link" data-prototype="film">Play the original motion prototype <span>↗</span></button>
-      <span class="reference-separation">Motion prototype uses a separate stylized car.</span>
-    </div>
-    <div class="reference-viewer-wrap">
-      <div class="reference-viewer-heading"><span><i class="status-dot"></i> LIVE 3D / EXTERIOR</span><span>01 — 360° WALKAROUND</span></div>
-      <iframe id="reference-viewer" title="Tesla Roadster 3D exterior by The3DBoss — rotate and zoom" src="https://sketchfab.com/models/559b4fe0bf8342f3ae25370ffaa40d0a/embed?autostart=1&amp;dnt=1" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <div class="reference-viewer-footer">
-        <span>MODEL BY <a href="https://sketchfab.com/The3DBoss" target="_blank" rel="noopener noreferrer">THE3DBOSS ↗</a><small>Hosted on Sketchfab</small></span>
-        <a class="reference-source" href="https://sketchfab.com/3d-models/tesla-roadster-3d-559b4fe0bf8342f3ae25370ffaa40d0a" target="_blank" rel="noopener noreferrer">Open original viewer ↗</a>
-      </div>
-    </div>
-    <p class="reference-footnote">EXTERIOR DESIGN SHOWCASE <span>/</span> INDEPENDENT PORTFOLIO CONCEPT</p>
-  </section>
-  <div id="prototype-notice" class="prototype-notice" hidden><span>ORIGINAL MOTION PROTOTYPE · STYLIZED VEHICLE</span><div><button data-prototype="film">Play stunt ↗</button><button data-reference>Reference exterior ↗</button></div></div>
   <main>
     <section id="hero-copy" class="hero-copy">
-      <div class="eyebrow"><span class="status-dot"></span> AN INDEPENDENT TESLA CONCEPT <span class="edition">/ 001</span></div>
+      <div class="eyebrow"><span class="status-dot"></span> INDEPENDENT ROADSTER EXPERIENCE <span class="edition">/ 003</span></div>
       <h1>BEYOND<br><span>GRAVITY.</span></h1>
       <p>Some cars follow the road.<br>This one reimagines it.</p>
       <div class="hero-actions">
@@ -57,18 +36,18 @@
     </section>
 
     <div id="hero-wordmark" aria-hidden="true">ROADSTER</div>
-    <div id="coordinates" class="coordinates" aria-hidden="true"><span>DESIGN STUDY 01</span><span>PRECISION / PERFORMANCE</span><span class="vertical-line"></span></div>
-    <div id="car-label" class="car-label"><span class="small-cross">+</span><div>ROADSTER<span>ELECTRIC SUPERCAR CONCEPT</span></div></div>
+    <div id="coordinates" class="coordinates" aria-hidden="true"><span>THE ROADSTER / 03</span><span>PRECISION / PERFORMANCE</span><span class="vertical-line"></span></div>
+    <div id="car-label" class="car-label"><span class="small-cross">+</span><div>ROADSTER<span>ELECTRIC PERFORMANCE CONCEPT</span></div></div>
 
     <section id="explore-header" class="explore-header" hidden>
-      <div class="eyebrow">ORIGINAL INTERACTION STUDY</div>
+      <div class="eyebrow">THE INTERACTIVE WALKAROUND</div>
       <h2>Closer changes everything.</h2>
-      <p>Select a detail. Discover what lies beneath.</p>
+      <p>Every angle. Every detail. Take a closer look.</p>
     </section>
     <div id="hotspots" hidden>
-      <button class="hotspot" data-part="hood"><span class="hotspot-dot">+</span><span class="hotspot-label">01 <b>Under the hood</b></span></button>
-      <button class="hotspot" data-part="cabin"><span class="hotspot-dot">+</span><span class="hotspot-label">02 <b>Step inside</b></span></button>
-      <button class="hotspot" data-part="rear"><span class="hotspot-dot">+</span><span class="hotspot-label">03 <b>Rear aero</b></span></button>
+      <button class="hotspot" data-part="hood"><span class="hotspot-dot">+</span><span class="hotspot-label">01 <b>Front bodywork</b></span></button>
+      <button class="hotspot" data-part="cabin"><span class="hotspot-dot">+</span><span class="hotspot-label">02 <b>Glass canopy</b></span></button>
+      <button class="hotspot" data-part="rear"><span class="hotspot-dot">+</span><span class="hotspot-label">03 <b>Rear design</b></span></button>
       <button class="hotspot" data-part="wheels"><span class="hotspot-dot">+</span><span class="hotspot-label">04 <b>Wheels & brakes</b></span></button>
       <button class="hotspot" data-part="thrusters"><span class="hotspot-dot">+</span><span class="hotspot-label">05 <b>Thruster concept</b></span></button>
     </div>
@@ -82,8 +61,6 @@
       <button id="detail-action" class="primary-button"></button>
       <p class="concept-note" id="detail-note"></p>
     </aside>
-    <button id="exit-cabin" class="exit-cabin" hidden><span>↗</span> Exit the interior</button>
-    <div id="interior-instruments" class="interior-instruments" hidden><span>COCKPIT VIEW</span><span>DRAG TO LOOK AROUND</span></div>
 
     <div id="stunt-title" class="stunt-title" hidden><div class="eyebrow" id="chapter-number">01 / IGNITION</div><h2 id="chapter-title">Break the ordinary.</h2><p id="chapter-description">An electric beginning.</p></div>
     <button id="leave-film" class="leave-film" hidden aria-label="Exit cinematic sequence">✕ <span>EXIT FILM</span></button>
@@ -99,22 +76,16 @@
     </section>
 
     <div id="explorer-toolbar" class="explorer-toolbar" hidden>
-      <div class="part-tabs" aria-label="Vehicle parts"><button data-part="hood">Hood</button><button data-part="cabin">Interior</button><button data-part="rear">Rear</button><button data-part="wheels">Wheels</button><button data-part="thrusters">Thrusters</button></div>
+      <div class="part-tabs" aria-label="Vehicle parts"><button data-part="hood">Front</button><button data-part="cabin">Canopy</button><button data-part="rear">Rear</button><button data-part="wheels">Wheels</button><button data-part="thrusters">Thrusters</button></div>
       <button id="reset-view" class="text-button">↻ <span>Reset view</span></button>
     </div>
-    <div id="paint-picker" class="paint-picker"><span>FINISH</span><button class="swatch selected" data-color="#bfc8cc" style="--swatch:#bfc8cc" aria-label="Lunar silver paint" aria-pressed="true"></button><button class="swatch" data-color="#9d151b" style="--swatch:#9d151b" aria-label="Crimson paint" aria-pressed="false"></button><button class="swatch" data-color="#24272d" style="--swatch:#24272d" aria-label="Obsidian paint" aria-pressed="false"></button><span id="paint-name">LUNAR SILVER</span></div>
-    <div id="loading" class="loading" hidden><span class="loading-mark">R</span><span>CRAFTING THE EXPERIENCE</span><span class="loading-track"><i></i></span></div>
-    <div id="webgl-fallback" class="webgl-fallback" hidden><h2>Your experience is ready.</h2><p>This 3D experience needs WebGL. Enable hardware acceleration in your browser, then reload to explore the car.</p><button data-reference class="primary-button">Return to reference exterior ↗</button></div>
+    <div id="loading" class="loading"><span class="loading-mark">R</span><span id="loading-status">LOADING YOUR ROADSTER</span><span class="loading-track"><i id="loading-progress"></i></span></div>
+    <div id="webgl-fallback" class="webgl-fallback" hidden><h2>Your experience is ready.</h2><p>This 3D experience needs WebGL. Enable hardware acceleration in your browser, then reload to explore the car.</p><button onclick="location.reload()" class="primary-button">Reload experience ↗</button></div>
   </main>
 
   <footer class="site-footer"><span>AN EXPLORATION IN MOTION</span><button id="credits-open">EXPERIENCE BY YASH PATEL <span>↗</span></button><span class="footer-right"><span class="status-dot"></span> BUILT TO BE EXPERIENCED</span></footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <dialog id="engineering-dialog">
-    <button class="dialog-close icon-button" aria-label="Close engineering details">✕</button><div class="eyebrow">THE THINKING BENEATH THE THRILL</div><h2>Engineered to<br>challenge convention.</h2>
-    <div class="engineering-grid"><article><span>01</span><h3>Electric propulsion</h3><p>Electric motors convert stored battery energy into motion. There is no combustion engine under the front hood. The assembly in this experience is an illustrative cutaway.</p></article><article><span>02</span><h3>Aerodynamic thinking</h3><p>A low silhouette, controlled airflow, a rear wing and an underbody diffuser form the visual language of this performance study.</p></article><article><span>03</span><h3>Cold-gas imagination</h3><p>The cinematic sequence explores the Roadster's thruster idea with visible air plumes, an inverted ramp run and a controlled roll. This animation is an artistic reconstruction, not a physics simulator.</p></article><article><span>04</span><h3>The human connection</h3><p>An opening door, a moving camera, a sculpted steering yoke and a focused display bring you from the exterior into an imagined cockpit.</p></article></div>
-    <p class="dialog-footnote">Independent fan concept by Yash Patel. The reference exterior is “Tesla Roadster 3D” by The3DBoss, displayed through the creator’s official Sketchfab embed. The separate motion prototype uses original artistic geometry, mechanisms, interior and sound. Not affiliated with or endorsed by Tesla or SpaceX. No production specifications are claimed.</p><a class="text-button" href="https://www.tesla.com/roadster" target="_blank" rel="noopener noreferrer">See Tesla's official Roadster information ↗</a>
-  </dialog>
-  <dialog id="credits-dialog"><button class="dialog-close icon-button" aria-label="Close credits">✕</button><div class="eyebrow">DESIGN + DEVELOPMENT</div><h2>A concept.<br>Without limits.</h2><p>A cinematic Roadster study by <strong>Yash Patel</strong>, combining real-time 3D, interactive product storytelling and original synthesized sound design.</p><p>The exterior showcase displays <a href="https://sketchfab.com/3d-models/tesla-roadster-3d-559b4fe0bf8342f3ae25370ffaa40d0a" target="_blank" rel="noopener noreferrer">“Tesla Roadster 3D” by The3DBoss ↗</a> through its official Sketchfab viewer. This model is the creator’s work and has no interior.</p><p>The separate motion prototype is Yash’s original interaction study with a stylized vehicle. Its hood, cockpit and stunt controls do not operate the reference model.</p><p class="dialog-footnote">Independent fan concept. Tesla and Roadster are trademarks of Tesla, Inc. This site is not an official Tesla website. Three.js is used under the MIT license.</p><a class="text-button" href="./assets/THREE-LICENSE.txt" target="_blank">Open-source license ↗</a></dialog>
+  <dialog id="credits-dialog"><button class="dialog-close icon-button" aria-label="Close credits">✕</button><div class="eyebrow">DESIGN + DEVELOPMENT</div><h2>Your Roadster.<br>In motion.</h2><p>Website and cinematic interaction design by <strong>Yash Patel</strong>. The exterior model and original texture maps come from the supplied <strong>tesla-roadster-20.zip</strong> asset.</p><p>The same uploaded vehicle appears in the showroom, close-ups and every frame of the stunt. The four original wheel assemblies rotate independently.</p><p>The asset contains one connected exterior body shell. It does not include separately rigged hood or door panels, or a modeled cockpit. Front and canopy views are exterior inspections.</p><p>Cold-gas plumes and the stunt trajectory are added artistic effects, not validated vehicle physics.</p><p class="dialog-footnote">Independent portfolio concept. Not affiliated with Tesla or SpaceX. Model authorship is separate from website authorship. Three.js and its model loader are used under the MIT license.</p><a class="text-button" href="./assets/THREE-LICENSE.txt" target="_blank">Open-source license ↗</a></dialog>
   <script type="module" src="./showroom.js"></script>
 </body>
 </html>
